@@ -1,0 +1,56 @@
+[
+  {
+    "invoiceNo": "49552549",
+    "issueDate": "2018-09-06",
+    "billingPeriodStartDate": "2018-08-01",
+    "billingPeriodEndDate": "2018-08-31",
+    "amount": 19.93,
+    "invoiceItems": null,
+    "callChargeSummary": null
+  },
+  {
+    "invoiceNo": "48629287",
+    "issueDate": "2018-08-06",
+    "billingPeriodStartDate": "2018-07-01",
+    "billingPeriodEndDate": "2018-07-31",
+    "amount": 27.81,
+    "invoiceItems": null,
+    "callChargeSummary": null
+  },
+  {
+    "invoiceNo": "47719752",
+    "issueDate": "2018-07-06",
+    "billingPeriodStartDate": "2018-06-01",
+    "billingPeriodEndDate": "2018-06-30",
+    "amount": 24.03,
+    "invoiceItems": null,
+    "callChargeSummary": null
+  },
+  {
+    "invoiceNo": "46748384",
+    "issueDate": "2018-06-06",
+    "billingPeriodStartDate": "2018-05-01",
+    "billingPeriodEndDate": "2018-05-31",
+    "amount": 18.99,
+    "invoiceItems": null,
+    "callChargeSummary": null
+  },
+  {
+    "invoiceNo": "45861331",
+    "issueDate": "2018-05-08",
+    "billingPeriodStartDate": "2018-04-01",
+    "billingPeriodEndDate": "2018-04-30",
+    "amount": 20.13,
+    "invoiceItems": null,
+    "callChargeSummary": null
+  },
+  {
+    "invoiceNo": "44948650",
+    "issueDate": "2018-04-05",
+    "billingPeriodStartDate": "2018-03-01",
+    "billingPeriodEndDate": "2018-03-31",
+    "amount": 29.40,
+    "invoiceItems": null,
+    "callChargeSummary": null
+  }
+]

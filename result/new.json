@@ -1,0 +1,171 @@
+[
+  {
+    "invoiceNo": "49552549",
+    "issueDate": "2018-09-06",
+    "billingPeriodStartDate": "2018-08-01",
+    "billingPeriodEndDate": "2018-08-31",
+    "amount": 19.93,
+    "invoiceItems": null,
+    "callChargeSummary": null,
+    "payments": [],
+    "previousBalance": 51.84
+  },
+  {
+    "invoiceNo": "48629287",
+    "issueDate": "2018-08-06",
+    "billingPeriodStartDate": "2018-07-01",
+    "billingPeriodEndDate": "2018-07-31",
+    "amount": 27.81,
+    "invoiceItems": null,
+    "callChargeSummary": null,
+    "payments": [
+      {
+        "id": "49487738",
+        "transactionDate": "2018-08-29T00:00:00Z",
+        "transactionAmount": -27.81,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      },
+      {
+        "id": "49337879",
+        "transactionDate": "2018-08-29T00:00:00Z",
+        "transactionAmount": 27.81,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      },
+      {
+        "id": "49322859",
+        "transactionDate": "2018-08-22T00:00:00Z",
+        "transactionAmount": -27.81,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      },
+      {
+        "id": "49051946",
+        "transactionDate": "2018-08-22T00:00:00Z",
+        "transactionAmount": 27.81,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      }
+    ],
+    "previousBalance": 24.03
+  },
+  {
+    "invoiceNo": "47719752",
+    "issueDate": "2018-07-06",
+    "billingPeriodStartDate": "2018-06-01",
+    "billingPeriodEndDate": "2018-06-30",
+    "amount": 24.03,
+    "invoiceItems": null,
+    "callChargeSummary": null,
+    "payments": [
+      {
+        "id": "48778626",
+        "transactionDate": "2018-08-01T00:00:00Z",
+        "transactionAmount": -24.03,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      },
+      {
+        "id": "48655645",
+        "transactionDate": "2018-08-01T00:00:00Z",
+        "transactionAmount": 24.03,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      },
+      {
+        "id": "48406000",
+        "transactionDate": "2018-07-23T00:00:00Z",
+        "transactionAmount": -24.03,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      },
+      {
+        "id": "48287085",
+        "transactionDate": "2018-07-23T00:00:00Z",
+        "transactionAmount": 24.03,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      }
+    ],
+    "previousBalance": 0.00
+  },
+  {
+    "invoiceNo": "46748384",
+    "issueDate": "2018-06-06",
+    "billingPeriodStartDate": "2018-05-01",
+    "billingPeriodEndDate": "2018-05-31",
+    "amount": 18.99,
+    "invoiceItems": null,
+    "callChargeSummary": null,
+    "payments": [
+      {
+        "id": "47499048",
+        "transactionDate": "2018-06-21T00:00:00Z",
+        "transactionAmount": 39.12,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      }
+    ],
+    "previousBalance": 20.13
+  },
+  {
+    "invoiceNo": "45861331",
+    "issueDate": "2018-05-08",
+    "billingPeriodStartDate": "2018-04-01",
+    "billingPeriodEndDate": "2018-04-30",
+    "amount": 20.13,
+    "invoiceItems": null,
+    "callChargeSummary": null,
+    "payments": [
+      {
+        "id": "47075025",
+        "transactionDate": "2018-06-06T00:00:00Z",
+        "transactionAmount": -20.13,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      },
+      {
+        "id": "47062144",
+        "transactionDate": "2018-06-06T00:00:00Z",
+        "transactionAmount": 20.13,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      },
+      {
+        "id": "46778814",
+        "transactionDate": "2018-05-24T00:00:00Z",
+        "transactionAmount": -20.13,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      },
+      {
+        "id": "46618765",
+        "transactionDate": "2018-05-24T00:00:00Z",
+        "transactionAmount": 20.13,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      }
+    ],
+    "previousBalance": 0.00
+  },
+  {
+    "invoiceNo": "44948650",
+    "issueDate": "2018-04-05",
+    "billingPeriodStartDate": "2018-03-01",
+    "billingPeriodEndDate": "2018-03-31",
+    "amount": 29.40,
+    "invoiceItems": null,
+    "callChargeSummary": null,
+    "payments": [
+      {
+        "id": "45599785",
+        "transactionDate": "2018-04-20T00:00:00Z",
+        "transactionAmount": 29.4,
+        "transactionType": "DDBIT",
+        "description": "Direct Debit"
+      }
+    ],
+    "previousBalance": 0.00
+  }
+]

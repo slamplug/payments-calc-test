@@ -1,0 +1,100 @@
+[
+  {
+    "id": "49487738",
+    "transactionDate": "2018-08-29T00:00:00Z",
+    "transactionAmount": -27.81,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "49337879",
+    "transactionDate": "2018-08-29T00:00:00Z",
+    "transactionAmount": 27.81,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "49322859",
+    "transactionDate": "2018-08-22T00:00:00Z",
+    "transactionAmount": -27.81,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "49051946",
+    "transactionDate": "2018-08-22T00:00:00Z",
+    "transactionAmount": 27.81,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "48778626",
+    "transactionDate": "2018-08-01T00:00:00Z",
+    "transactionAmount": -24.03,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "48655645",
+    "transactionDate": "2018-08-01T00:00:00Z",
+    "transactionAmount": 24.03,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "48406000",
+    "transactionDate": "2018-07-23T00:00:00Z",
+    "transactionAmount": -24.03,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "48287085",
+    "transactionDate": "2018-07-23T00:00:00Z",
+    "transactionAmount": 24.03,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "47499048",
+    "transactionDate": "2018-06-21T00:00:00Z",
+    "transactionAmount": 39.12,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "47075025",
+    "transactionDate": "2018-06-06T00:00:00Z",
+    "transactionAmount": -20.13,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "47062144",
+    "transactionDate": "2018-06-06T00:00:00Z",
+    "transactionAmount": 20.13,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "46778814",
+    "transactionDate": "2018-05-24T00:00:00Z",
+    "transactionAmount": -20.13,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "46618765",
+    "transactionDate": "2018-05-24T00:00:00Z",
+    "transactionAmount": 20.13,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  },
+  {
+    "id": "45599785",
+    "transactionDate": "2018-04-20T00:00:00Z",
+    "transactionAmount": 29.4,
+    "transactionType": "DDBIT",
+    "description": "Direct Debit"
+  }
+]
