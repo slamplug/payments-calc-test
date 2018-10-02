@@ -34,36 +34,39 @@ public class PaymentCalculator {
             .enable(SerializationFeature.INDENT_OUTPUT);
 
     private Pair<InvoiceSummary, BigDecimal> buildInvoiceSummary(
-            final LognetInvoice lognetInvoice,
-            final Result<List<LognetInvoiceSummary>, String> invoicesSummaryResult,
+            final LognetInvoice currentInvoice,
+            final LognetInvoice prevInvoice,
             final LognetInvoice nextInvoice,
-            final BigDecimal previousBalance,
+            final BigDecimal balanceBroughtForward,
+            final Result<List<LognetInvoiceSummary>, String> invoicesSummaryResult,
             final Result<List<Payment>, String> paymentsResult) {
 
-        //System.out.println(
-        //        " InvoiceNo  :" +  lognetInvoice.getInvoiceno() +
-        //        " IssueDate  :" +  lognetInvoice.getIssuedate() +
-        //        ", PreviousNo : " + (!isNull(previousInvoice) ? previousInvoice.getInvoiceno() : "        ") +
-        //        ", NextNo     : " + (!isNull(nextInvoice) ? nextInvoice.getInvoiceno() : "        "));
+        /*System.out.println(
+                "PreviousNo : " + (!isNull(prevInvoice) ? prevInvoice.getInvoiceno() : "        ") +
+                ", PreviousIssueDate : " + (!isNull(prevInvoice) ? prevInvoice.getIssuedate() : "                        ") +
+                ", InvoiceNo  :" +  lognetInvoice.getInvoiceno() +
+                ", IssueDate  :" +  lognetInvoice.getIssuedate() +
+                ", NextNo : " + (!isNull(nextInvoice) ? nextInvoice.getInvoiceno() : "        ") +
+                ", NextIssueDate : " + (!isNull(nextInvoice) ? nextInvoice.getIssuedate() : ""));*/
 
-        final List<Payment> invoicePayments = getInvoicePayments(lognetInvoice.getIssuedate(),
-                !isNull(nextInvoice) ? nextInvoice.getIssuedate() : null,
-                paymentsResult);
+        final List<Payment> currInvoicePayments = getPaymentsBetweenDates(getIssueDateOrNull(prevInvoice),
+                getIssueDateOrNull(currentInvoice), paymentsResult);
 
-        final BigDecimal paymentsTotal = invoicePayments
-                .stream()
+        final List<Payment> nextInvoicePayments = getPaymentsBetweenDates(getIssueDateOrNull(currentInvoice),
+                getIssueDateOrNull(nextInvoice), paymentsResult);
+
+        final BigDecimal paymentsTotal = nextInvoicePayments.stream()
                 .map(Payment::getTransactionAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        //System.out.println(invoicePayments.stream()
-        //        .map(p -> p.getId() + "|" +p.getTransactionDate()+ "|" +p.getTransactionAmount() )
-        //        .collect(toList()));
+        /*System.out.println(nextInvoicePayments.stream()
+                .map(p -> p.getId() + "|" +p.getTransactionDate()+ "|" +p.getTransactionAmount() )
+                .collect(toList()));
 
-        //System.out.println("payment total:" + paymentsTotal);
+        System.out.println("payment total:" + paymentsTotal);*/
 
-        final BigDecimal invoiceBalance = previousBalance
-                .add(paymentsTotal)
-                .subtract(new BigDecimal(lognetInvoice.getAmount()));
+        final BigDecimal invoiceBalance = balanceBroughtForward.add(paymentsTotal)
+                .subtract(new BigDecimal(currentInvoice.getAmount()));
 
         //System.out.println("balance BF:" + invoiceBalance);
 
@@ -72,30 +75,40 @@ public class PaymentCalculator {
                 .toOptional()
                 .map(summaries -> summaries
                     .stream()
-                    .filter(summary -> summary.getInvoiceno().equals(lognetInvoice.getInvoiceno()))
+                    .filter(summary -> summary.getInvoiceno().equals(currentInvoice.getInvoiceno()))
                     .findFirst().orElse(null))
                 .orElse(null);
         //@formatter:off
 
-        return new Pair<>(transformer.transform(lognetInvoice, matchingInvoiceSummary, invoicePayments, invoiceBalance), invoiceBalance);
+        return new Pair<>(transformer.transform(
+                currentInvoice, matchingInvoiceSummary, currInvoicePayments, invoiceBalance), invoiceBalance);
     }
 
-    private List<Payment> getInvoicePayments(final String invoiceIssueDate, final String nextIssueDate,
-            final Result<List<Payment>, String> paymentsResult) {
+    private String getIssueDateOrNull(final LognetInvoice lognetInvoice) {
+        return !isNull(lognetInvoice) ? lognetInvoice.getIssuedate() : null;
+    }
+
+    private List<Payment> getPaymentsBetweenDates(final String dateFrom, final String dateTo, final Result<List<Payment>, String> paymentsResult) {
         //@formatter:off
         return paymentsResult
                 .toOptional()
                 .map(payments -> payments
                     .stream()
-                    .filter(payment -> paymentInIssuePeriod(payment, invoiceIssueDate, nextIssueDate))
+                    .filter(payment -> paymentInIssuePeriod(payment, dateFrom, dateTo))
                     .collect(toList()))
                 .orElse(emptyList());
         //@formatter:off
     }
 
-    private boolean paymentInIssuePeriod(final Payment payment, final String issueDate, final String nextIssueDate) {
-        return payment.getTransactionDate().isAfter(convertToLocalDateTime(issueDate))
-                && (StringUtils.isEmpty(nextIssueDate) || payment.getTransactionDate().isBefore(convertToLocalDateTime(nextIssueDate)));
+    private boolean paymentInIssuePeriod(final Payment payment, final String dateFrom, final String dateTo) {
+        if (StringUtils.isEmpty(dateFrom)) {
+            return payment.getTransactionDate().isBefore(convertToLocalDateTime(dateTo));
+        } else if (StringUtils.isEmpty(dateTo)) {
+            return payment.getTransactionDate().isAfter(convertToLocalDateTime(dateFrom));
+        } else {
+            return payment.getTransactionDate().isAfter(convertToLocalDateTime(dateFrom))
+                    && payment.getTransactionDate().isBefore(convertToLocalDateTime(dateTo));
+        }
     }
 
     private List<InvoiceSummary> buildInvoiceSummaries(
@@ -116,9 +129,10 @@ public class PaymentCalculator {
             for (final LognetInvoice lognetInvoice : sortedList) {
                 final Pair<InvoiceSummary,BigDecimal> response = buildInvoiceSummary(
                         lognetInvoice,
-                        invoicesSummaryResult,
+                        getPreviousInvoiceChronologically(convertToLocalDateTime(lognetInvoice.getIssuedate()), sortedList),
                         getNextInvoiceChronologically(convertToLocalDateTime(lognetInvoice.getIssuedate()), sortedList),
                         balanceBroughtForward,
+                        invoicesSummaryResult,
                         paymentsResult);
                 invoiceSummaries.add(response.getKey());
                 balanceBroughtForward = response.getValue();
@@ -126,6 +140,13 @@ public class PaymentCalculator {
 
             return invoiceSummaries;
         }).orElse(null);
+    }
+
+    private LognetInvoice getPreviousInvoiceChronologically(final LocalDateTime issueDate, final List<LognetInvoice> sortedList) {
+        return sortedList.stream()
+                .filter(l -> convertToLocalDateTime(l.getIssuedate()).isBefore(issueDate))
+                .max(comparing(LognetInvoice::getIssuedate))
+                .orElse(null);
     }
 
     private LognetInvoice getNextInvoiceChronologically(final LocalDateTime issueDate, final List<LognetInvoice> sortedList) {
